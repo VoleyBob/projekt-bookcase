@@ -8,8 +8,10 @@ class UserController extends Controller
 {
     public function login()
     {
-        \dump(get_called_class());
+    /*  \dump(get_called_class());
         die();
+    */ 
+        return $this->render('user/login.html.twig');
     }
 
     public function showUserDetails()

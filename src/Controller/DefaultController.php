@@ -9,9 +9,9 @@ class DefaultController extends Controller
 {
     public function index()
     {
-        \dump(get_called_class());
+/*        \dump(get_called_class());
         die();
-
+*/
         return $this->render('index.html.twig');
     }
 }
