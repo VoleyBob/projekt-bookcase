@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+    {% block title %}
+        list-books-from-bookcase
+    {% endblock %}  
+
+    {% block header %}
+       Lista książek z biblioteczek!
+    {% endblock %}    
+
+    {% block body %}
+        <h1>Lista książek z danej biblioteczki</h1>
+        <ul>
+            {% for bookcase in bookcases %}
+                <li>{{ bookcase.getName }}</li>
+            {% else %}
+                Brak kategorii.
+            {% endfor %}
+        </ul>
+    {% endblock %}    
+
