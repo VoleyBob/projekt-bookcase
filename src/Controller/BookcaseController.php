@@ -22,7 +22,7 @@ class BookcaseController extends Controller
     {
         
         $bookcase = new BookcaseEntity();
-        $bookcase->setName('Biblio_2');
+        $bookcase->setName('Biblioteczka której nie ma');
         
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($bookcase);
