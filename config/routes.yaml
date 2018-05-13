@@ -25,3 +25,7 @@ newBookcase:
 bookcases:
     path: /bookcase
     controller: App\Controller\BookcaseController::showBookcases
+
+newBook:
+    path: /new/book
+    controller: App\Controller\BookController::addBook
