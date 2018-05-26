@@ -12,9 +12,20 @@ login:
 
 bookcase:
     path: /bookcase/{id}
-    controller: App\Controller\BookcaseController::listBooksFromBookcase
+    controller: App\Controller\BookcaseController::showBookcase
 
 user:
     path: /user/{id}
-    controller: App\Controller\UserController::showUserDetails
+    controller: App\Controller\UserController::profile
 
+newBookcase:
+    path: /new/bookcase
+    controller: App\Controller\BookcaseController::addBookcase
+
+bookcases:
+    path: /bookcase
+    controller: App\Controller\BookcaseController::showBookcases
+
+newBook:
+    path: /new/book
+    controller: App\Controller\BookController::addBook

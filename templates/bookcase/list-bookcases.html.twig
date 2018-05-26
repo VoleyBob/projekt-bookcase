@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+    {% block title %}
+        list-books-from-bookcase
+    {% endblock %}  
+
+    {% block header %}
+       Lista moich biblioteczek
+    {% endblock %}    
+
+    {% block body %}
+        <h1>Posiadam pomniejsze biblioteczki</h1>
+        <ul>
+            {% for bookcase in bookcases %}
+                <li><a href="/bookcase/{{ bookcase.getId }}">{{ bookcase.getName }}</a></li>
+            {% else %}
+                Brak kategorii.
+            {% endfor %}
+        </ul>
+    {% endblock %}    
+

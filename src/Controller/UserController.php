@@ -14,7 +14,7 @@ class UserController extends Controller
         return $this->render('user/login.html.twig');
     }
 
-    public function showUserDetails()
+    public function profile()
     {
         \dump(get_called_class());
         die();
