@@ -8,16 +8,17 @@
     <meta name="description" content="My Own Bookcase">
     <meta name="author" content="VoleyBob">
 
-    <link rel="icon" href="<?php echo $view['assets']->getUrl('bootstrap/favicon.ico'); ?>" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico') }}"> 
 
-<!--    <link rel="icon" href="../../../../favicon.ico">   
+<!-- <link rel="icon" href="../../../../favicon.ico">   
+     <link rel="icon" href="<?php echo $view['assets']->getUrl('bootstrap/favicon.ico'); ?>" type="image/x-icon">
+     <link rel="icon" href="bootstrap/favicon.ico">
     <link rel="icon" href="{{ asset('bootstrap/favicon.ico') }}"> 
-    <link rel="icon" href="bootstrap/favicon.ico">
 -->
 
     <title>
         {% block title %}
-            Bazowa
+          My Own Bookcase
         {% endblock %}    
     </title>
 
@@ -36,8 +37,21 @@
     <nav class="site-header sticky-top py-1">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="/">Home</a>
-        <a class="py-2 d-none d-md-inline-block" href="/new/book">Add Book</a>
 
+  <!-- Book Dropdown Menu
+        <a class="py-2 d-none d-md-inline-block" href="/new/book">Add Book</a>
+      -->
+        <div class="dropdown show">
+          <a class="btn btn-success dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Books
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/new/book">Add Book</a>
+            <a class="dropdown-item" href="/bookcase">List books from bookcase</a>
+          </div>
+        </div>
+  <!-- / Book Dropdown Menu -->
 
   <!-- Bookcase Dropdown Menu
         <a class="py-2 d-none d-md-inline-block" href="/bookcase">My Bookcase</a>
