@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BookEntity;
 use App\Entity\BookcaseEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType};
@@ -10,16 +11,34 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BookcaseController extends Controller
 {
+   /*
+    * METODA WYŚWIETLAJĄCA WSZYSTKIE KSIĄŻCE Z DANEJ PÓŁKI
+    */
+    public function showBookcase($id)
+    {
+        $books = $this
+            ->getDoctrine()
+            ->getRepository(BookEntity::class)
+            ->findAll();
+     #   \dump($books);
+
+        return $this->render('book/list-books-from-bookcase.html.twig', [
+            'books' => $books,
+        ]);
+    }
+/*    
     public function showBookcase($id)
     {
         $bookcase = $this
             ->getDoctrine()
             ->getRepository(BookcaseEntity::class)	/// a to odpowiada takiemu zapisowi:->getRepository("App\Entity\BookcaseEntity")
             ->find($id);
-        \dump($bookcase);
-
-        return $this->render('bookcase/list-books-from-bookcase.html.twig');
+#        \dump($bookcase);
+        return $this->render('book/list-books-from-bookcase.html.twig');
+//        return $this->render('bookcase/list-books-from-bookcase.html.twig');  // tak ma być docelowo z 'bookcase'
     }
+*/
+
 /*
     public function addBookcase()
     {

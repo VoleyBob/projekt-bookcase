@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class BookController extends Controller
 {
    /*
-    * METODA WYŚWIETLAJĄCA INOFORMACJE O KSIĄŻCE Z BAZY DANYCH
+    * METODA WYŚWIETLAJĄCA INFORMACJE O KSIĄŻCE Z BAZY DANYCH
     */
     public function showBook($id)
     {
@@ -24,7 +24,7 @@ class BookController extends Controller
             ->getDoctrine()
             ->getRepository(BookEntity::class)
             ->find($id);
-        \dump($book);
+ #       \dump($book);
     
         return $this->render('book/show-book.html.twig');
     }
@@ -38,7 +38,7 @@ class BookController extends Controller
             ->getDoctrine()
             ->getRepository(BookEntity::class)
             ->findAll();
-        \dump($books);
+     #   \dump($books);
 
         return $this->render('book/list-books-from-bookcase.html.twig', [
             'books' => $books,
@@ -100,7 +100,7 @@ class BookController extends Controller
         ->getRepository(BookEntity::class)
         ->find($id);
 
-        \dump($book);
+    #    \dump($book);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($book);
