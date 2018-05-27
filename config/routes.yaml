@@ -1,22 +1,26 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index
-    
+
 book:
     path: /book/{id}
     controller: App\Controller\BookController::showBook
 
-#login:
-#    path: /login
-#    controller: App\Controller\UserController::login
+books:
+    path: /books
+    controller: App\Controller\BookController::showBooks
+
+newBook:
+    path: /new/book
+    controller: App\Controller\BookController::addBook
+
+removeBook:
+    path: /remove/book/{id}
+    controller: App\Controller\BookController::removeBook
 
 bookcase:
     path: /bookcase/{id}
     controller: App\Controller\BookcaseController::showBookcase
-
-#user:
-#    path: /user/{id}
-#    controller: App\Controller\UserController::profile
 
 newBookcase:
     path: /new/bookcase
@@ -26,6 +30,10 @@ bookcases:
     path: /bookcase
     controller: App\Controller\BookcaseController::showBookcases
 
-newBook:
-    path: /new/book
-    controller: App\Controller\BookController::addBook
+#login:
+#    path: /login
+#    controller: App\Controller\UserController::login
+
+#user:
+#    path: /user/{id}
+#    controller: App\Controller\UserController::profile

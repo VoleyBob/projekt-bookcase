@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\BookcaseEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType};
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BookcaseController extends Controller
 {
@@ -17,7 +20,7 @@ class BookcaseController extends Controller
 
         return $this->render('bookcase/list-books-from-bookcase.html.twig');
     }
-
+/*
     public function addBookcase()
     {
         
@@ -30,6 +33,35 @@ class BookcaseController extends Controller
 
         return $this->redirectToRoute('index');	 //tu jest nazwa routy, a nie widoku
     }
+*/
+
+
+    public function addBookcase(Request $request)
+    {
+        $bookcase = new BookcaseEntity();
+        $form = $this->createFormBuilder($bookcase)
+            ->add('name', TextType::class)
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($bookcase);
+            $entityManager->flush();
+            return $this->redirectToRoute('index');
+        }
+            
+        return $this->render('bookcase/new.html.twig', [
+            'controller_name' => 'BookcaseController',
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+
+
 
     public function showBookcases()
     {

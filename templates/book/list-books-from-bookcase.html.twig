@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+    {% block title %}
+       list-books-from-bookcase.html.twig
+    {% endblock %}  
+
+    {% block header %}
+        Moje książki
+    {% endblock %}    
+   
+    {% block body %}
+        <h1>Ilość książek: {{ books|length }}</h1>
+        <ul>
+            {% for book in books %}
+            <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Usuń</a>
+                {% endif %}
+                </p>
+            </li>
+            {% else %}
+                Brak kategorii.
+            {% endfor %}
+        </ul>
+    {% endblock %}    

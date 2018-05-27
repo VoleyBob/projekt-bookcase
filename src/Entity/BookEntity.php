@@ -52,6 +52,12 @@ class BookEntity
      */
     private $bookcase;
 
+    
+    public function __toString(): string
+    {
+        return $this->getTitle(). ' (' . $this->getId() . ')';
+    }
+
     public function getId()
     {
         return $this->id;

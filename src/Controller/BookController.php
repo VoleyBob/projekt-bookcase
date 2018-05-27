@@ -12,17 +12,44 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class BookController extends Controller
 {
-    public function showBook()
+   /*
+    * METODA WYŚWIETLAJĄCA INOFORMACJE O KSIĄŻCE Z BAZY DANYCH
+    */
+    public function showBook($id)
     {
-        \dump(get_called_class());
-        die();
+#        \dump(get_called_class());
+#        die();
+
+        $book = $this
+            ->getDoctrine()
+            ->getRepository(BookEntity::class)
+            ->find($id);
+        \dump($book);
+    
+        return $this->render('book/show-book.html.twig');
+    }
+
+   /*
+    * METODA WYŚWIETLAJĄCA WSZYSTKIE KSIĄŻCE Z DANEJ PÓŁKI
+    */
+    public function showBooks()
+    {
+        $books = $this
+            ->getDoctrine()
+            ->getRepository(BookEntity::class)
+            ->findAll();
+        \dump($books);
+
+        return $this->render('book/list-books-from-bookcase.html.twig', [
+            'books' => $books,
+        ]);
     }
 
     public function addBook(Request $request)
     {
-        $book = new BookEntity();
-        $form = $this->createFormBuilder($book)
-            ->add('title', TextType::class)
+        $book = new BookEntity();  // tworzę obiekt na bazie encji  BookEntity - mam dzięki temu dostęp do wszystkich pól tej encji
+        $form = $this->createFormBuilder($book)  // wywołuję FormBuilder'a, który odpowiada za generowanie formularza
+            ->add('title', TextType::class)  // generuję pola tekstowe
             ->add('authorName', TextType::class)
             ->add('authorSurname', TextType::class)
             ->add('isbn13', TextType::class)
@@ -42,16 +69,16 @@ class BookController extends Controller
                 // 'expanded' => true,
             ));
 */
-            ->add('bookcase', EntityType::class, array(
+            ->add('bookcase', EntityType::class, array( // łączę się z encją BookcaseEntity i odczytuję dozwolone 'półki'
                 'class' => BookcaseEntity::class,
                 'choice_label' => 'name',
             ))
-            ->add('save', SubmitType::class)
-            ->getForm();
+            ->add('save', SubmitType::class) // generuję przycisk submit
+            ->getForm(); // generuję formularz
 
-        $form->handleRequest($request);
+        $form->handleRequest($request); // do mojego formularza podpinam teraz metodę request, która w parametrze pobierze wszystkie dane jakie podano w formularzu
         
-        if($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {   // sprawdzam czy wysłano formularz i czy pola przeszły walidację
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
@@ -64,6 +91,25 @@ class BookController extends Controller
         ]);
 
     }
+
+
+    public function removeBook(int $id)      // kod jest chroniony przed INCJECTION; jeszcze lepiej: INT
+    {
+        $book = $this
+        ->getDoctrine()
+        ->getRepository(BookEntity::class)
+        ->find($id);
+
+        \dump($book);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($book);
+        $em->flush();
+
+        return $this->redirectToRoute('books');                              //   tak prawidłowo
+    
+    }
+
 
 
 }
