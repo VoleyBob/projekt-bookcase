@@ -6,17 +6,17 @@ book:
     path: /book/{id}
     controller: App\Controller\BookController::showBook
 
-login:
-    path: /login
-    controller: App\Controller\UserController::login
+#login:
+#    path: /login
+#    controller: App\Controller\UserController::login
 
 bookcase:
     path: /bookcase/{id}
     controller: App\Controller\BookcaseController::showBookcase
 
-user:
-    path: /user/{id}
-    controller: App\Controller\UserController::profile
+#user:
+#    path: /user/{id}
+#    controller: App\Controller\UserController::profile
 
 newBookcase:
     path: /new/bookcase
