@@ -30,7 +30,7 @@ class BookController extends Controller
     }
 
    /*
-    * METODA WYŚWIETLAJĄCA WSZYSTKIE KSIĄŻCE Z DANEJ PÓŁKI
+    * METODA WYŚWIETLAJĄCA WSZYSTKIE KSIĄŻKI Z DANEJ PÓŁKI
     */
     public function showBooks()
     {
@@ -49,12 +49,12 @@ class BookController extends Controller
     {
         $book = new BookEntity();  // tworzę obiekt na bazie encji  BookEntity - mam dzięki temu dostęp do wszystkich pól tej encji
         $form = $this->createFormBuilder($book)  // wywołuję FormBuilder'a, który odpowiada za generowanie formularza
-            ->add('title', TextType::class)  // generuję pola tekstowe
-            ->add('authorName', TextType::class)
-            ->add('authorSurname', TextType::class)
-            ->add('isbn13', TextType::class)
-            ->add('publisher', TextType::class)
-            ->add('format', TextType::class)
+            ->add('title', TextType::class, array('label' => 'Book’s title'))  // generuję pola tekstowe
+            ->add('authorName', TextType::class, array('label' => 'Author’s first name'))
+            ->add('authorSurname', TextType::class, array('label' => 'Author’s last name'))
+            ->add('isbn13', TextType::class, array('label' => '13 digit ISBN code'))
+            ->add('publisher', TextType::class, array('label' => 'Publisher'))
+            ->add('format', TextType::class, array('label' => 'Book’s format [A4, A5, B5]'))
 /*          ->add('bookcase', TextType::class)
 
             add('users', EntityType::class, array(
@@ -70,6 +70,7 @@ class BookController extends Controller
             ));
 */
             ->add('bookcase', EntityType::class, array( // łączę się z encją BookcaseEntity i odczytuję dozwolone 'półki'
+                'label' => 'Choose your own bookcase',
                 'class' => BookcaseEntity::class,
                 'choice_label' => 'name',
             ))
@@ -113,6 +114,3 @@ class BookController extends Controller
 
 
 }
-
-
-
