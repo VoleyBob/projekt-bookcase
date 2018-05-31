@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\BookEntity;
-use App\Entity\BookcaseEntity;
+use App\Entity\{BookEntity, BookcaseEntity};
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType};
+use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType, DateType, NumberType, CheckboxType, TextareaType};
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
