@@ -3,13 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="My Own Bookcase">
     <meta name="author" content="VoleyBob">
 
     <link rel="icon" href="{{ asset('favicon.ico') }}"> 
-
 <!-- <link rel="icon" href="../../../../favicon.ico">   
      <link rel="icon" href="<?php echo $view['assets']->getUrl('bootstrap/favicon.ico'); ?>" type="image/x-icon">
      <link rel="icon" href="bootstrap/favicon.ico">
@@ -23,24 +22,50 @@
     </title>
 
     <!-- Bootstrap core CSS -->
-<!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-<!--    <link href="jumbotron.css" rel="stylesheet"> -->
-    <link href="navbar-fixed-top.css" rel="stylesheet">
+
+    <!-- <link href="jumbotron.css" rel="stylesheet"> -->
+    <!-- <link href="navbar-fixed-top.css" rel="stylesheet"> -->
+    <!-- <link href="bootstrap-full-width-slider.css" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('bootstrap/css/bootstrap-full-width-slider.css') }}" rel="stylesheet" /> -->
+
+
+    <!-- STYLES -->
+
+    <!-- 
+      <link href="../assets/css/bootstrap.css" rel="stylesheet">
+      <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    -->
+
+
+    <!-- <link href="css/full-slider.css" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('bootstrap/css/full-slider.css') }}" rel="stylesheet" /> -->
+
+
+    <style>
+     </style>
+    
+
   </head>
 
-  <body>
+  <body style="width: 100%;">
 
 
+
+
+    <!-- NAVBAR
+    ================================================== -->
+<!--  
     <nav class="site-header sticky-top py-1">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="/">Home</a>
 
-  <!-- Book Dropdown Menu
+  !-- Book Dropdown Menu
         <a class="py-2 d-none d-md-inline-block" href="/new/book">Add Book</a>
-      -->
+      --
         <div class="dropdown show">
           <a class="btn btn-info dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Books
@@ -51,12 +76,12 @@
             <a class="dropdown-item" href="/books">List books from bookcase</a>
           </div>
         </div>
-  <!-- / Book Dropdown Menu -->
+  !-- / Book Dropdown Menu --
 
-  <!-- Bookcase Dropdown Menu
+  !-- Bookcase Dropdown Menu
         <a class="py-2 d-none d-md-inline-block" href="/bookcase">My Bookcase</a>
         <a class="py-2 d-none d-md-inline-block" href="/new/bookcase">Add Bookcase</a>
-      -->
+      --
         <div class="dropdown show">
           <a class="btn btn-success dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Bookcase management
@@ -67,12 +92,12 @@
             <a class="dropdown-item" href="/new/bookcase">Add Bookcase</a>
           </div>
         </div>
-  <!-- / Bookcase Dropdown Menu -->
+  !-- / Bookcase Dropdown Menu --
 
-  <!-- Security Dropdown Menu
+  !-- Security Dropdown Menu
         <a class="py-2 d-none d-md-inline-block" href="/login">Login</a>
         <a class="py-2 d-none d-md-inline-block" href="/logout">Logout</a>
-      -->
+      --
         <div class="dropdown show">
           <a class="btn btn-danger dropdown-toggle" href="/login" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Login
@@ -87,15 +112,46 @@
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
         </div>
-  <!-- / Security Dropdown Menu -->
+  !-- / Security Dropdown Menu --
 
+      </div>
+    </nav> 
+-->
+
+  <!-- Navigation -->
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <!-- <a href="#" class="navbar-left"><img src="{{ asset('logo.png') }}" style="width:25%"></a> -->
+        <a class="navbar-brand" href="#"><img src="{{ asset('logo.png') }}" style="width:15%; padding-right:6px;">My Own Library</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
 
 
 
-    <!-- Fixed navbar -->
-<!--
+ <!-- Fixed navbar -->
+<!-- 
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -132,28 +188,25 @@
           </ul>
         </div>
       </div>
-    </nav>
--->
+    </nav> -->
+
 
     <main role="main">
 
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <div class="container">
-          <h1 class="display-3">
+        <div class="container" style="width: 100%;">
                 {% block header %}
                   Hello, world!
                 {% endblock %}    
-          </h1>
-          <p>
-              {% block body %}
-                This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
-              {% endblock %}    
-          </p>
+
+                {% block body %}
+                  This is a template for a simple marketing or informational website. 
+                  It includes a large callout called a jumbotron and three supporting pieces of content. 
+                  Use it as a starting point to create something more unique.
+                {% endblock %}    
         </div>
-      </div>
 
     </main>
+
 
     <footer class="container">
       <p>&copy;  ZBOOK.IT 2018</p>
@@ -165,13 +218,13 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 
-<!--    <script src="../../../../assets/js/vendor/popper.min.js"></script> -->
+    <!-- <script src="../../../../assets/js/vendor/popper.min.js"></script> -->
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js ') }}"></script>
 
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!--    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->  
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->  
     <script src="{{ asset('bootstrap/js/ie10-viewport-bug-workaround.js') }}"></script>
 
   </body>
