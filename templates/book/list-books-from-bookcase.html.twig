@@ -1,24 +1,29 @@
 {% extends 'base.html.twig' %}
+
     {% block title %}
-       list-books-from-bookcase.html.twig
+       My books
     {% endblock %}  
 
     {% block header %}
-        My books
+        <div class="p-3">
+            My books
+        </div>
     {% endblock %}    
    
     {% block body %}
-        <h1>Number of books: {{ books|length }}</h1>
-        <ul>
-            {% for book in books %}
-            <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>
-            {% if is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Delete</a>
-                {% endif %}
-                </p>
-            </li>
-            {% else %}
-                No books.
-            {% endfor %}
-        </ul>
+       <div class="mx-auto p-3">
+            <h3>In my <strong>{{ books[0].getBookcase }}</strong> there are {{ books|length }} books:</h3>
+            <ul>
+                {% for book in books %}
+                <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Delete</a>
+                    {% endif %}
+                    </p>
+                </li>
+                {% else %}
+                    No books.
+                {% endfor %}
+            </ul>
+        </div>
     {% endblock %}    

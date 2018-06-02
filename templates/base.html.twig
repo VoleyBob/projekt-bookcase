@@ -1,235 +1,170 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="My` Own Bookcase">
-    <meta name="author" content="VoleyBob">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="My` Own Bookcase">
+      <meta name="author" content="VoleyBob">
 
-    <link rel="icon" href="{{ asset('favicon.ico') }}"> 
-<!-- <link rel="icon" href="../../../../favicon.ico">   
-     <link rel="icon" href="<?php echo $view['assets']->getUrl('bootstrap/favicon.ico'); ?>" type="image/x-icon">
-     <link rel="icon" href="bootstrap/favicon.ico">
-    <link rel="icon" href="{{ asset('bootstrap/favicon.ico') }}"> 
--->
+      <link rel="icon" href="{{ asset('img/favicon.ico') }}"> 
+  <!-- <link rel="icon" href="../../../../favicon.ico">   
+      <link rel="icon" href="<?php echo $view['assets']->getUrl('bootstrap/favicon.ico'); ?>" type="image/x-icon">
+      <link rel="icon" href="bootstrap/favicon.ico">
+      <link rel="icon" href="{{ asset('bootstrap/favicon.ico') }}"> 
+  -->
 
-    <title>
-        {% block title %}
-          My Own Bookcase
-        {% endblock %}    
-    </title>
+      <title>
+          {% block title %}
+            My Own Bookcase
+          {% endblock %}    
+      </title>
 
-    <!-- Bootstrap core CSS -->
-    <!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+      <!-- Bootstrap core CSS -->
+      <!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+      <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
 
-    <!-- Custom styles for this template -->
+      <!-- Custom styles for this template -->
 
-    <!-- <link href="jumbotron.css" rel="stylesheet"> -->
-    <!-- <link href="navbar-fixed-top.css" rel="stylesheet"> -->
-    <!-- <link href="bootstrap-full-width-slider.css" rel="stylesheet"> -->
-    <!-- <link href="{{ asset('bootstrap/css/bootstrap-full-width-slider.css') }}" rel="stylesheet" /> -->
+      <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
 
-
-    <!-- STYLES -->
-
-    <!-- 
-      <link href="../assets/css/bootstrap.css" rel="stylesheet">
-      <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-    -->
+      <!-- <link href="jumbotron.css" rel="stylesheet"> -->
+      <!-- <link href="navbar-fixed-top.css" rel="stylesheet"> -->
+      <!-- <link href="bootstrap-full-width-slider.css" rel="stylesheet"> -->
+      <!-- <link href="{{ asset('bootstrap/css/bootstrap-full-width-slider.css') }}" rel="stylesheet" /> -->
 
 
-    <!-- <link href="css/full-slider.css" rel="stylesheet"> -->
-    <!-- <link href="{{ asset('bootstrap/css/full-slider.css') }}" rel="stylesheet" /> -->
+      <!-- STYLES -->
+      <!-- <link href="../assets/css/bootstrap.css" rel="stylesheet"> -->
+      <!-- <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
 
+      <!-- <link href="css/full-slider.css" rel="stylesheet"> -->
+      <!-- <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet" /> -->
 
     <style>
     </style>
-    
-
   </head>
 
   <body>
 
+   <!-- ===========================  NAVBAR  =========================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top m-0 px-5">
+      <a class="navbar-brand" href="/">
+        <img src="{{ asset('img/logo.png') }}" style="width:15%; padding-right:6px;">My Own Library</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <!-- <ul class="navbar-nav mr-auto"> -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">About
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+    
+          <!-- 
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li> 
+          -->
+    
+          <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Books
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/new/book">Add Book</a>
+              <a class="dropdown-item" href="/books">List books from bookcase</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
 
-
-
-    <!-- NAVBAR
-    ================================================== -->
-<!--  
-    <nav class="site-header sticky-top py-1">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2 d-none d-md-inline-block" href="/">Home</a>
-
-  !-- Book Dropdown Menu
-        <a class="py-2 d-none d-md-inline-block" href="/new/book">Add Book</a>
-      --
-        <div class="dropdown show">
-          <a class="btn btn-info dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Books
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/new/book">Add Book</a>
-            <a class="dropdown-item" href="/books">List books from bookcase</a>
-          </div>
-        </div>
-  !-- / Book Dropdown Menu --
-
-  !-- Bookcase Dropdown Menu
-        <a class="py-2 d-none d-md-inline-block" href="/bookcase">My Bookcase</a>
-        <a class="py-2 d-none d-md-inline-block" href="/new/bookcase">Add Bookcase</a>
-      --
-        <div class="dropdown show">
-          <a class="btn btn-success dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Bookcase management
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/bookcase">My Bookcases</a>
-            <a class="dropdown-item" href="/new/bookcase">Add Bookcase</a>
-          </div>
-        </div>
-  !-- / Bookcase Dropdown Menu --
-
-  !-- Security Dropdown Menu
-        <a class="py-2 d-none d-md-inline-block" href="/login">Login</a>
-        <a class="py-2 d-none d-md-inline-block" href="/logout">Logout</a>
-      --
-        <div class="dropdown show">
-          <a class="btn btn-danger dropdown-toggle" href="/login" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/register/">Register</a>
-            <a class="dropdown-item" href="/login">Login</a>
-            <a class="dropdown-item" href="/profile/edit">Profile</a>
-            <a class="dropdown-item" href="/profile/change-password">Change password</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/logout">Logout</a>
-          </div>
-        </div>
-  !-- / Security Dropdown Menu --
-
-      </div>
-    </nav> 
--->
-
-
-
-
-
-  <!-- Navigation -->
-  <!-- <nav class="site-header sticky-top py-1">   -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> -->
-          <div class="container">
-        <!-- <a href="#" class="navbar-left"><img src="{{ asset('logo.png') }}" style="width:25%"></a> -->
-        <a class="navbar-brand" href="/"><img src="{{ asset('logo.png') }}" style="width:15%; padding-right:6px;">My Own Library</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home
-                <span class="sr-only">(current)</span>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bookcase
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/new/bookcase">Add Bookcase</a>
+                <a class="dropdown-item" href="/bookcase">My Bookcases</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </li>
 
 
-            <li class="nav-item">
-              <!-- <a class="nav-link" href="#">About</a> -->
-
-              <div class="dropdown show">
-                  <a class="btn btn-info dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Books
-                  </a>
-        
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="/new/book">Add Book</a>
-                    <a class="dropdown-item" href="/books">List books from bookcase</a>
-                  </div>
-                </div>
-
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Log
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/login">Login</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/register/">Register</a>
+              <a class="dropdown-item" href="/profile/edit">Profile</a>
+              <a class="dropdown-item" href="/profile/change-password">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          </li>
+    
+          <!--  <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> 
+          -->
+    
+        </ul>
+    
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    
       </div>
     </nav>
+  
+<!--   
+    #myDIV {
+      width: 200px;
+      height: 300px;
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(to right,blue 0%,red 100%),url('w3css.gif');
+      background-blend-mode:luminosity;
+  } 
+    <main role="main" style="background-image: url('img/supernova.jpg'); background-blend-mode: lighten; background-color: rgba(50, 0, 50, 0.3);">
+    <main role="main" class="container-fluid" style="background-color: rgba(40, 0, 50, 0.3);">
+-->
 
+    <main role="main" class="container-fluid m-0 p-0">
 
+        <!-- <div class="container-fluid"> -->
+                
+          <h1>
+            {% block header %}
+              Hello, bookers!
+            {% endblock %}    
+          </h1>
 
- <!-- Fixed navbar -->
-<!-- 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar">1</span>
-            <span class="icon-bar">2</span>
-            <span class="icon-bar">3</span>
-          </button>
-          <a class="navbar-brand" href="#">My Own Library</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
+          {% block body %}
+            This is a template for a simple marketing or informational website. 
+            It includes a large callout called a jumbotron and three supporting pieces of content. 
+            Use it as a starting point to create something more unique.
+          {% endblock %}    
 
-
-    <main role="main">
-
-        <div class="container-fluid">
-                {% block header %}
-                  Hello, world!
-                {% endblock %}    
-
-                {% block body %}
-                  This is a template for a simple marketing or informational website. 
-                  It includes a large callout called a jumbotron and three supporting pieces of content. 
-                  Use it as a starting point to create something more unique.
-                {% endblock %}    
-        </div>
+        <!-- </div> -->
 
     </main>
 
 
-    <footer class="container">
-      <p>&copy;  ZBOOK.IT 2018</p>
+    <footer class="container-fluid">
+      <!-- <hr> -->
+      <p>&copy; ZBOOK.IT 2018</p>
     </footer>
 
     <!-- Bootstrap core JavaScript

@@ -1,20 +1,25 @@
 {% extends 'base.html.twig' %}
     {% block title %}
-        list-books-from-bookcase
+        Show bookcases
     {% endblock %}  
 
     {% block header %}
-       Lista moich biblioteczek
+        <div class="p-3">
+            List of my bookcases
+        </div>
     {% endblock %}    
 
     {% block body %}
-        <h1>Posiadam pomniejsze biblioteczki</h1>
-        <ul>
-            {% for bookcase in bookcases %}
-                <li><a href="/bookcase/{{ bookcase.getId }}">{{ bookcase.getName }}</a></li>
-            {% else %}
-                Brak kategorii.
-            {% endfor %}
-        </ul>
+        <div class="mx-auto p-3">
+            <h3>I have this bookcases:</h3>
+            <ul>
+                {% for bookcase in bookcases %}
+                    <li>
+                        <a href="/bookcase/{{ bookcase.getId }}">{{ bookcase.getName }}</a>
+                    </li>
+                {% else %}
+                    No bookcases!
+                {% endfor %}
+            </ul>
+        </div>
     {% endblock %}    
-

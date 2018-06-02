@@ -25,7 +25,9 @@ class BookController extends Controller
             ->find($id);
  #       \dump($book);
     
-        return $this->render('book/show-book.html.twig');
+        return $this->render('book/show-book.html.twig', [
+            'book' => $book,
+        ]);
     }
 
    /*
@@ -44,12 +46,17 @@ class BookController extends Controller
         ]);
     }
 
+   /*
+    * METODA DODAJĄCA KSIĄŻKĘ DO DANEJ PÓŁKI
+    */
     public function addBook(Request $request)
     {
-        $book = new BookEntity();  // tworzę obiekt na bazie encji  BookEntity - mam dzięki temu dostęp do wszystkich pól tej encji
+        $book = new BookEntity();  // tworzę obiekt na bazie encji BookEntity - mam dzięki temu dostęp do wszystkich pól tej encji
+
+        // do zmiennej form przypisuję cały formularz
         $form = $this->createFormBuilder($book)  // wywołuję FormBuilder'a, który odpowiada za generowanie formularza
-            ->add('title', TextType::class, array('label' => 'Book’s title'))  // generuję pola tekstowe
-            ->add('authorName', TextType::class, array('label' => 'Author’s first name'))
+            ->add('title', TextType::class, array('label' => 'Book’s title'))  // generuję pola tekstowe...
+            ->add('authorName', TextType::class, array('label' => 'Author’s first name')) // 'labelami' nadaję nowe kominikaty zachęty
             ->add('authorSurname', TextType::class, array('label' => 'Author’s last name'))
             ->add('isbn13', TextType::class, array('label' => '13 digit ISBN code'))
             ->add('publisher', TextType::class, array('label' => 'Publisher'))
@@ -76,7 +83,7 @@ class BookController extends Controller
             ->add('save', SubmitType::class) // generuję przycisk submit
             ->getForm(); // generuję formularz
 
-        $form->handleRequest($request); // do mojego formularza podpinam teraz metodę request, która w parametrze pobierze wszystkie dane jakie podano w formularzu
+        $form->handleRequest($request); // do formularza podpinam metodę handleRequest, która w parametrze pobierze wszystkie dane jakie podano w formularzu
         
         if($form->isSubmitted() && $form->isValid()) {   // sprawdzam czy wysłano formularz i czy pola przeszły walidację
             $entityManager = $this->getDoctrine()->getManager();

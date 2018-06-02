@@ -1,17 +1,69 @@
 {% extends 'base.html.twig' %}
 
     {% block title %}
-        Szczegóły o książce
+        Details about book
     {% endblock %}  
 
     {% block header %}
-        Szczegóły o książce
+        <div class="p-3">
+            Details about book
+        </div>
     {% endblock %}        
 
     {% block body %}
-        <div class="w-50">
-        Szczegóły o książce
-        Szczegóły o książce
-        Szczegóły o książce
-        </div>
+ 
+<!--     
+            <div class="mx-auto p-3 m-3">
+                    <p>{{ book.title }}</p>
+                    <p>{{ book.authorName }}</p>
+                    <p>{{ book.authorSurname }}</p>
+                    <p>{{ book.isbn13 }}</p> -->
+
+                    <!-- ->add('title', TextType::class, array('label' => 'Book’s title'))  // generuję pola tekstowe...
+                    ->add('authorName', TextType::class, array('label' => 'Author’s first name')) // 'labelami' nadaję nowe kominikaty zachęty
+                    ->add('authorSurname', TextType::class, array('label' => 'Author’s last name'))
+                    ->add('isbn13', TextType::class, array('label' => '13 digit ISBN code'))
+                    ->add('publisher', TextType::class, array('label' => 'Publisher'))
+                    ->add('format', TextType::class, array('label' => 'Book’s format [A4, A5, B5]')) -->
+            <!-- </div> -->
+
+            <div class="col-md-6 my-4 mb-3 pb-3">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block mb-2 text-success">Book</strong>
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="#">{{ book.getTitle }}</a>
+                            </h3>
+                            <div class="mb-1 text-muted">{{ book.getAuthorName }} {{ book.getAuthorSurName }}</div>
+                            <p class="card-text mb-auto">{{ book.getIsbn13 }}</p>
+                            <a href="/books">&raquo; Back to books list</a>
+                        </div>
+                        {% if book.getId > 0 %}
+                        <img class="card-img-right flex-auto d-none d-lg-block" src="{{ asset('img/Dan_Brown_Anioly_i_Demony.jpg') }}" height="297" width="210" />
+                        {% endif %}
+                    </div>
+                </div>
+                
+
+
+            <!--
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block mb-2 text-success">Papierowa książka</strong>
+                            <h2 class="mb-0">
+                                <a class="text-dark" href="#">}book.getTitle{</a>
+                            </h2>
+                            <div class="mb-1 text-muted">}book.getAuthor{</div>
+                            <p class="card-text mb-auto">}book.getContent{</p>
+                            <a href="#">Back to bookcase list</a>
+                        </div>
+                        {% if book.getId == 9 %}
+                            <img class="card-img-right flex-auto d-none d-lg-block" src="{{ asset('img/Dan_Brown_Anioly_i_Demony.jpg') }}" height="300" />
+                        {% endif %}
+                    </div>
+                </div>
+            -->
+
+
     {% endblock %}

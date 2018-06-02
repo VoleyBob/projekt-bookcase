@@ -33,6 +33,11 @@ class BookcaseEntity
         $this->books = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->getName(). ' (' . $this->getId() . ')';
+    }
+
     public function getId()
     {
         return $this->id;

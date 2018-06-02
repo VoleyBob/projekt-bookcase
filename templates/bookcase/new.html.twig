@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
     {% block title %}
-        Formularz dodawania półeczki
+        Bookcase adding form
     {% endblock %}  
 
     {% block header %}
-        Dodaj nową półkę
+       <div class="text-center p-3">
+            Add new bookcase
+        </div>
     {% endblock %}        
 
     {% block body %}
-        <div class="w-50">
+        <!-- <div class="w-50 m-2 p-2"> -->
+        <div class="mx-auto" style="width: 500px;">
             {{ form_start(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}

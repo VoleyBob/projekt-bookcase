@@ -2,6 +2,10 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
 
+about:
+    path: /about
+    controller: App\Controller\DefaultController::about
+
 book:
     path: /book/{id}
     controller: App\Controller\BookController::showBook
