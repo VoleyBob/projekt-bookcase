@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="My Own Bookcase">
+    <meta name="description" content="My` Own Bookcase">
     <meta name="author" content="VoleyBob">
 
     <link rel="icon" href="{{ asset('favicon.ico') }}"> 
@@ -46,12 +46,12 @@
 
 
     <style>
-     </style>
+    </style>
     
 
   </head>
 
-  <body style="width: 100%;">
+  <body>
 
 
 
@@ -118,25 +118,45 @@
     </nav> 
 -->
 
+
+
+
+
   <!-- Navigation -->
-  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
+  <!-- <nav class="site-header sticky-top py-1">   -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> -->
+          <div class="container">
         <!-- <a href="#" class="navbar-left"><img src="{{ asset('logo.png') }}" style="width:25%"></a> -->
-        <a class="navbar-brand" href="#"><img src="{{ asset('logo.png') }}" style="width:15%; padding-right:6px;">My Own Library</a>
+        <a class="navbar-brand" href="/"><img src="{{ asset('logo.png') }}" style="width:15%; padding-right:6px;">My Own Library</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="/">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+
+
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <!-- <a class="nav-link" href="#">About</a> -->
+
+              <div class="dropdown show">
+                  <a class="btn btn-info dropdown-toggle" href="/bookcase" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Books
+                  </a>
+        
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="/new/book">Add Book</a>
+                    <a class="dropdown-item" href="/books">List books from bookcase</a>
+                  </div>
+                </div>
+
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="#">Services</a>
             </li>
@@ -193,7 +213,7 @@
 
     <main role="main">
 
-        <div class="container" style="width: 100%;">
+        <div class="container-fluid">
                 {% block header %}
                   Hello, world!
                 {% endblock %}    
