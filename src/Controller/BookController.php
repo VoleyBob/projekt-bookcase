@@ -46,6 +46,23 @@ class BookController extends Controller
         ]);
     }
 
+
+   /*
+    * METODA WYSZUKJĄCA KSIĄŻKI Z WG POLA SEARCH
+    */
+    public function serchBooks()
+    {
+        $books = $this
+            ->getDoctrine()
+            ->getRepository(BookEntity::class)
+            ->findAll();
+     #   \dump($books);
+
+        return $this->render('book/list-books-from-bookcase.html.twig', [
+            'books' => $books,
+        ]);
+    }
+
    /*
     * METODA DODAJĄCA KSIĄŻKĘ DO DANEJ PÓŁKI
     */

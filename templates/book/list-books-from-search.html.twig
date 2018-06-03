@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
     {% block title %}
-       My books
+       find books
     {% endblock %}  
 
     {% block header %}
         <div class="p-3">
-            My books
+            Books by search terms
         </div>
     {% endblock %}    
    
     {% block body %}
        <div class="mx-auto p-3">
-            <h3>In my <strong>{{ books[0].getBookcase }}</strong> there are {{ books|length }} books:</h3>
+            <h3>There are {{ books|length }} books, which meet the conditions:</h3>
             <ul>
                 {% for book in books %}
-                <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>
-                    {% if is_granted('ROLE_USER') %}
-                        <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Delete</a>
-                    {% endif %}
+                    <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>
+                {% if is_granted('ROLE_USER') %}
+                    <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Delete</a>
+                {% endif %}
                     </p>
                 </li>
                 {% else %}
