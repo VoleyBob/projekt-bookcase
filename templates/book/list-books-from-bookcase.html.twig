@@ -12,7 +12,7 @@
    
     {% block body %}
        <div class="mx-auto p-3">
-            <h3>In my <strong>{{ books[0].getBookcase }}</strong> there are {{ books|length }} books:</h3>
+            <h3>{{ app.user }} In my <strong>{{ books[0].getBookcase }}</strong> there are {{ books|length }} books:</h3>
             <ul>
                 {% for book in books %}
                 <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>

@@ -14,6 +14,10 @@ books:
     path: /books
     controller: App\Controller\BookController::showBooks
 
+booksSearch:
+    path: /books/search
+    controller: App\Controller\BookController::searchBooks
+
 newBook:
     path: /new/book
     controller: App\Controller\BookController::addBook

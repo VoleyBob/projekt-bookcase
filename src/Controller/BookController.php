@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\{BookEntity, BookcaseEntity};
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType, DateType, NumberType, CheckboxType, TextareaType};
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
@@ -48,10 +48,37 @@ class BookController extends Controller
 
 
    /*
-    * METODA WYSZUKJĄCA KSIĄŻKI Z WG POLA SEARCH
+    * METODA WYSZUKUJĄCA KSIĄŻKI Z WG POLA SEARCH
     */
-    public function serchBooks()
+    public function searchBooks(Request $request)
     {
+        $serchedLetters->handleRequest($request);
+
+            $searchResult = $this
+                ->getDoctrine()
+                ->getRepository(BookEntity::class)
+                ->findByExampleField($letters);
+        #    \dump($searchResult);
+    
+            return $this->render('book/list-books-from-search.html.twig', [
+                'searchResult' => $searchResult,
+            ]);
+
+/*
+        public function filter($letter)
+        {
+            $categories = $this
+                ->getDoctrine()
+                ->getRepository(CategoryEntity::class)
+                ->findByFirstLetter($letter);
+            \dump($categories);
+    
+            return $this->render('category/list-categories.html.twig', [
+                'categories' => $categories,
+            ]);
+        }
+*/    
+/*
         $books = $this
             ->getDoctrine()
             ->getRepository(BookEntity::class)
@@ -61,6 +88,7 @@ class BookController extends Controller
         return $this->render('book/list-books-from-bookcase.html.twig', [
             'books' => $books,
         ]);
+*/
     }
 
    /*
