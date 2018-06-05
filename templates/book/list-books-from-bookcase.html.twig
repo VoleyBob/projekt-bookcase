@@ -11,13 +11,14 @@
     {% endblock %}    
    
     {% block body %}
-       <div class="mx-auto p-3">
-            <h3>{{ app.user }} In my <strong>{{ books[0].getBookcase }}</strong> there are {{ books|length }} books:</h3>
+       <div class="mx-auto p-3 pl-5">
+            <h3><strong>{{ app.user }}</strong> user has in bookcase <strong>{{ books[0].getBookcase }}</strong> {{ books|length }} books:</h3>
             <ul>
                 {% for book in books %}
                 <li><p style="padding: 10px;"><a href="/book/{{ book.getId }}">{{ loop.index }}. {{ book }}</a>
                     {% if is_granted('ROLE_USER') %}
-                        <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Delete</a>
+                    <a class="btn btn-danger float-right" href="/remove/book/{{ book.getId }}">Delete</a>
+                    <a class="btn btn-success float-right" href="/borrow/book/{{ book.getId }}">Borrow</a>
                     {% endif %}
                     </p>
                 </li>

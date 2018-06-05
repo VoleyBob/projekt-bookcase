@@ -26,6 +26,10 @@ removeBook:
     path: /remove/book/{id}
     controller: App\Controller\BookController::removeBook
 
+borrowBook:
+    path: /borrow/book/{id}
+    controller: App\Controller\BookController::borrowBook
+
 bookcase:
     path: /bookcase/{id}
     controller: App\Controller\BookcaseController::showBookcase

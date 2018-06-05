@@ -52,6 +52,27 @@ class BookEntity
      */
     private $bookcase;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookEntities")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $owner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="bookBorrowEntieties")
+     */
+    private $borrower;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $borrowDate;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $borrowPeriod;
+
     
     public function __toString(): string
     {
@@ -143,6 +164,54 @@ class BookEntity
     public function setBookcase(?BookcaseEntity $bookcase): self
     {
         $this->bookcase = $bookcase;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getBorrower(): ?User
+    {
+        return $this->borrower;
+    }
+
+    public function setBorrower(?User $borrower): self
+    {
+        $this->borrower = $borrower;
+
+        return $this;
+    }
+
+    public function getBorrowDate(): ?\DateTimeInterface
+    {
+        return $this->borrowDate;
+    }
+
+    public function setBorrowDate(?\DateTimeInterface $borrowDate): self
+    {
+        $this->borrowDate = $borrowDate;
+
+        return $this;
+    }
+
+    public function getBorrowPeriod(): ?int
+    {
+        return $this->borrowPeriod;
+    }
+
+    public function setBorrowPeriod(?int $borrowPeriod): self
+    {
+        $this->borrowPeriod = $borrowPeriod;
 
         return $this;
     }

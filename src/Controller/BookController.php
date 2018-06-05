@@ -6,6 +6,7 @@ use App\Entity\{BookEntity, BookcaseEntity};
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\{SubmitType, TextType, DateType, NumberType, CheckboxType, TextareaType};
 use Symfony\Component\HttpFoundation\{Request, Response};
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
@@ -51,7 +52,7 @@ class BookController extends Controller
     * METODA WYSZUKUJĄCA KSIĄŻKI Z WG POLA SEARCH
     */
     public function searchBooks(Request $request)
-    {
+    {   
         $serchedLetters->handleRequest($request);
 
             $searchResult = $this
@@ -92,13 +93,17 @@ class BookController extends Controller
     }
 
    /*
-    * METODA DODAJĄCA KSIĄŻKĘ DO DANEJ PÓŁKI
+    * METODA DODAJE NOWĄ KSIĄŻKĘ DO AKTULANEGO UŻYTKOWNIKA I PRZYPISUJE DO DANEJ PÓŁKI
+    *
+    * Doctrine 2.x operuje na encjach, które reprezentowane są przez lekkie obiekty. 
+    * Pobieranie i zapisywanie encji w bazie danych odbywa się przy pomocy menedżera encji (entity manager),
+    * który jest implementacją wzorca mapowania danych.
     */
     public function addBook(Request $request)
     {
-        $book = new BookEntity();  // tworzę obiekt na bazie encji BookEntity - mam dzięki temu dostęp do wszystkich pól tej encji
+        $book = new BookEntity();  // Utwórz obiekt reprezentujący nowy wiersz w bazie encji BookEntity. Dzięki temu dostęp do wszystkich pól tej encji.
 
-        // do zmiennej form przypisuję cały formularz
+        // Do zmiennej `form` przypisz cały formularz
         $form = $this->createFormBuilder($book)  // wywołuję FormBuilder'a, który odpowiada za generowanie formularza
             ->add('title', TextType::class, array('label' => 'Book’s title'))  // generuję pola tekstowe...
             ->add('authorName', TextType::class, array('label' => 'Author’s first name')) // 'labelami' nadaję nowe kominikaty zachęty
@@ -132,9 +137,12 @@ class BookController extends Controller
         
         if($form->isSubmitted() && $form->isValid()) {   // sprawdzam czy wysłano formularz i czy pola przeszły walidację
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($book);
-            $entityManager->flush();
-            return $this->redirectToRoute('index');
+            $book->setOwner($this->getUser());  // WAŻNE - tutaj dodaje aktywnego użytkownika do bazy
+            // Powiadom Doctrine, aby “zarządzała” obiektem $book
+            $entityManager->persist($book);  // dodaje do pamięci - coś jak commit. Można zrobić wiele commitów
+            $entityManager->flush(); // Zapisz wiersz do bazy danych. Przesyła dane do bazy - działa jak push
+            echo 'Książka o identyfikatorze '.$book->getId().' została zapisana.';
+            return $this->redirectToRoute('index'); // żeby nie wywalało błędu daję redirect    do strony głównej
         }
             
         return $this->render('book/new.html.twig', [
@@ -163,5 +171,22 @@ class BookController extends Controller
     }
 
 
+    public function borrowBook(int $id)      // kod jest chroniony przed INCJECTION; jeszcze lepiej: INT
+    {
+        $book = $this
+        ->getDoctrine()
+        ->getRepository(BookEntity::class)
+        ->find($id);
+
+    #    \dump($book);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $book->setBorrower($this->getUser());  // tutaj pobierz borrowera!!
+        $entityManager->remove($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('books');                              //   tak prawidłowo
+    
+    }
 
 }

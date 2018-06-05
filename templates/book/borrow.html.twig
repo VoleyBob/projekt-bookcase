@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}
+        Borrow book
+    {% endblock %}  
+
+    {% block header %}
+        <div class="text-center p-3">
+            Borrow book to your friend
+        </div>
+    {% endblock %}        
+
+
+
+    {% block body %}
+    <!--      <div class="w-50 m-2 p-2">  -->
+        <div class="mx-auto" style="width: 500px;">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    {% endblock %}
